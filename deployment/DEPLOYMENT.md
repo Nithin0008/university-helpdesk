@@ -124,3 +124,4 @@ The Helpdesk supports two production document strategies:
 ### Issue 3: Container OOM (Out of Memory)
 - **Cause**: Uploading massive (>500 page) PDF documents on the free tier.
 - **Resolution**: Keep individual uploaded documents under 200 MB. Ensure `.index_cache/` is not bloated with extraneous binary files.
+

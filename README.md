@@ -79,20 +79,20 @@ The system active knowledge base indexes **14 genuine DOCX policy documents** fr
 
 | # | Policy Document | Primary Category | Key Regulations Covered |
 | :- | :--- | :--- | :--- |
-| 1 | `admission_cancellation_and_fee_refund_policy.docx` | Finance & Fees | Refund deduction tiers, formal cancellation deadlines, non-refundable deposits |
-| 2 | `discipline_and_code_of_conduct_policy.docx` | Hostel & Discipline | Ragging prevention, Proctorial Board hearings, disciplinary penalties |
-| 3 | `diversity_equity_and_inclusion_policy.docx` | Campus Life | Equal opportunity mandates, accessible infrastructure, anti-discrimination |
-| 4 | `examination_and_evaluation_policy.docx` | Academics | Passing marks, re-evaluation, reappear exams, grade point conversions |
-| 5 | `fee_payment_modes_and_guidelines.docx` | Finance & Fees | Online/offline payment gateways, zero-convenience UPI, late payment penalties |
-| 6 | `general_code_of_conduct_and_disciplinary_rules.docx` | Hostel & Discipline | Campus ID requirements, substance bans, property damage restitution |
-| 7 | `international_student_left_marking_process.docx` | International Affairs | FRRO intimation timelines (14 days), visa compliance, clearance procedure |
-| 8 | `it_and_network_acceptable_use_policy.docx` | Campus Life | Campus Wi-Fi credentials, bandwidth caps, cyber-safety guidelines |
-| 9 | `library_policy.docx` | Academics | Book borrowing quotas, overdue fines compounding, lost book replacement |
-| 10 | `nss_ncc_guidelines_and_benefits.docx` | Academics | Attendance concessions (up to 10%), merit credits for national camps |
-| 11 | `scholarship_and_financial_aid_policy.docx` | Finance & Fees | LPUNEST scholarship brackets, maintenance CGPA criteria (7.5+), exclusions |
-| 12 | `semester_abroad_policy.docx` | International Affairs | Exchange partner universities, passport validity (6 months beyond stay) |
-| 13 | `student_residential_and_mess_policy.docx` | Hostel & Discipline | Hostel curfews (weekday/weekend), mess plans, electrical appliance bans |
-| 14 | `transportation_policy.docx` | Campus Life | Day-scholar bus routes, seasonal boarding passes, boarding safety rules |
+| 1 | `academic/attendance_policy.docx` | Academics | Minimum 75% attendance criteria, duty leaves, attendance tracking |
+| 2 | `academic/attendance_late_registration_policy.docx` | Academics | Late registration deadlines, attendance calculation rules from reporting date |
+| 3 | `academic/evaluation_mechanism_odl_programmes.docx` | Academics | Continuous Assessment (CA) & End Term Exam (ETE) scheme for ODL distance programs |
+| 4 | `academic/reappear_and_improvement_exam_policy.docx` | Academics | Reappear registration, passing mark retention, improvement exam eligibility |
+| 5 | `academic/TITLE LPU EDU Revolution Policy.docx` | Academics | Innovation in pedagogy, curriculum flexibility, academic credit structure |
+| 6 | `administration/student_certificate_application_process.docx` | Administration | Bonafide certificate application, window 101/102 processing, UMS portal steps |
+| 7 | `career/career_services_enrolment_guidelines.docx` | Career Services | Placement enhancement program (PEP), campus drive eligibility, placement rules |
+| 8 | `career/student_placement_coordinator_guidelines.docx` | Career Services | Student coordinator roles, minimum CGPA eligibility (6.5+), placement ethics |
+| 9 | `facilities/library_policy.docx` | Facilities & Academics | Borrowing limits, compounding overdue fines, lost book replacement penalties |
+| 10 | `facilities/student_residential_and_mess_policy.docx` | Facilities & Hostel | Turnstile/biometric entry, room patterns, permitted electrical appliances, mess plans |
+| 11 | `finance/btech_fee_scholarship_structure_lpunest.docx` | Finance & Fees | LPUNEST scholarship brackets, maintenance CGPA (7.5+), family business exclusions |
+| 12 | `finance/fee_payment_modes_and_guidelines.docx` | Finance & Fees | Online/offline payment modes, 0% UPI options, delayed fee payment consequences |
+| 13 | `international/international_student_left_marking_process.docx` | International Affairs | Mandatory FRRO intimation (14-day timeline), visa compliance, clearance rules |
+| 14 | `international/semester_abroad_policy.docx` | International Affairs | Exchange universities, minimum 6-month passport validity beyond stay |
 
 ---
 
@@ -121,9 +121,9 @@ university-helpdesk/
 │   └── vector_search.py           # FAISS dense vector search & hybrid fusion engine
 │
 ├── sample_documents/
-│   ├── docs_raw/                  # 14 genuine LPU policy DOCX handbooks
-│   │   ├── admission_cancellation_and_fee_refund_policy.docx
-│   │   ├── ... (13 other policies)
+│   ├── docs_raw/                  # 14 genuine LPU policy DOCX handbooks (in academic/, administration/, career/, facilities/, finance/, international/)
+│   │   ├── academic/attendance_policy.docx
+│   │   └── ... (13 other policies)
 │   └── archive_excluded/          # Legacy sample documents excluded from active search
 │       ├── Academic Benefits.pdf
 │       ├── sample_hostel_policy.pdf
@@ -313,8 +313,8 @@ See [`deployment/DEPLOYMENT.md`](./deployment/DEPLOYMENT.md) for full deployment
 
 ---
 
-## 14. License & Acknowledgements
+## 14. Rights & Acknowledgements
 
 - Built with [Streamlit](https://streamlit.io), [Hugging Face Sentence Transformers](https://huggingface.co/sentence-transformers), [FAISS](https://github.com/facebookresearch/faiss), and [Google Gemini](https://ai.google.dev/).
 - Grounded in official Lovely Professional University (LPU) student policy guidelines.
-- Distributed under the **MIT License**.
+- Repository is strictly private. All institutional rights in policy documentation belong to their respective university authorities.

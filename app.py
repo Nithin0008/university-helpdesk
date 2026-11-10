@@ -766,7 +766,8 @@ with st.sidebar:
 
             col_doc, col_del = st.columns([4, 1])
             with col_doc:
-                st.markdown(f"<span style='font-size:0.82rem;color:#1e293b;'>📄 <b>{fname}</b></span>", unsafe_allow_html=True)
+                safe_fname = html.escape(fname)
+                st.markdown(f"<span style='font-size:0.82rem;color:#1e293b;'>📄 <b>{safe_fname}</b></span>", unsafe_allow_html=True)
             with col_del:
                 if st.button("✕", key=f"rm_{fname}", help=f"Remove {fname}"):
                     remove_document(fname)
@@ -1079,6 +1080,7 @@ else:
                             chunk = res.get("chunk", {})
                             score = res.get("score", "")
                             src_name = chunk.get("source", "Document")
+                            safe_src_name = html.escape(src_name)
                             page_val = chunk.get("page")
                             sec_val = chunk.get("section") or chunk.get("section_title")
                             scope_val = chunk.get("programme_scope")
@@ -1098,7 +1100,7 @@ else:
                             card_html = (
                                 f'<div class="result-card">'
                                 f'<div class="result-card-meta">'
-                                f'<span class="source-badge">Source: {src_name}</span>'
+                                f'<span class="source-badge">Source: {safe_src_name}</span>'
                                 f'{page_badge}'
                                 f'{scope_badge}'
                                 f'{score_badge}'

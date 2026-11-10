@@ -64,6 +64,43 @@ def is_duplicate_chunk(chunk: Dict[str, Any], accepted_chunks: List[Dict[str, An
     return False
 
 
+_SHARED_MODEL_CACHE: Dict[str, Any] = {}
+
+
+def _load_sentence_transformer_instance(model_name: str):
+    """
+    Downloads and initializes the multilingual SentenceTransformer model.
+    Enforces CPU thread boundaries for resource-constrained cloud environments.
+    """
+    import os
+    import torch
+    from sentence_transformers import SentenceTransformer
+
+    torch.set_num_threads(min(4, os.cpu_count() or 4))
+    try:
+        return SentenceTransformer(model_name)
+    except Exception as e:
+        raise RuntimeError(
+            f"Failed to load or download embedding model '{model_name}': {e}. "
+            "Verify network access for first-time cloud download or check local model cache."
+        ) from e
+
+
+# Shared caching across Streamlit sessions via st.cache_resource
+try:
+    import streamlit as st
+
+    @st.cache_resource(show_spinner=False)
+    def get_shared_embedding_model(model_name: str):
+        return _load_sentence_transformer_instance(model_name)
+
+except Exception:
+    def get_shared_embedding_model(model_name: str):
+        if model_name not in _SHARED_MODEL_CACHE:
+            _SHARED_MODEL_CACHE[model_name] = _load_sentence_transformer_instance(model_name)
+        return _SHARED_MODEL_CACHE[model_name]
+
+
 class VectorSearchEngine:
     """
     Multilingual semantic search engine using sentence-transformers,
@@ -82,15 +119,9 @@ class VectorSearchEngine:
         self.backend = "numpy"
 
     def _load_model(self):
-        """Loads the sentence-transformers model lazily on first use."""
+        """Loads or retrieves the shared sentence-transformers model instance."""
         if self._model is None:
-            import os
-            import torch
-            os.environ.setdefault("HF_HUB_OFFLINE", "1")
-            os.environ.setdefault("TRANSFORMERS_OFFLINE", "1")
-            from sentence_transformers import SentenceTransformer
-            torch.set_num_threads(min(4, os.cpu_count() or 4))
-            self._model = SentenceTransformer(self.model_name)
+            self._model = get_shared_embedding_model(self.model_name)
         return self._model
 
     def index_chunks(self, chunks: List[Dict[str, Any]]) -> None:

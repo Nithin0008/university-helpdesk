@@ -1194,7 +1194,7 @@ def call_gemini_api(
     last_error = None
 
     for model_name in candidate_models:
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={api_key}"
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent"
         payload = {
             "contents": [{"parts": [{"text": prompt}]}],
             "generationConfig": {
@@ -1206,7 +1206,10 @@ def call_gemini_api(
             req = urllib.request.Request(
                 url,
                 data=json.dumps(payload).encode("utf-8"),
-                headers={"Content-Type": "application/json"}
+                headers={
+                    "Content-Type": "application/json",
+                    "x-goog-api-key": api_key.strip()
+                }
             )
             with urllib.request.urlopen(req, timeout=12) as response:
                 res_data = json.loads(response.read().decode("utf-8"))
@@ -1292,13 +1295,16 @@ def test_gemini_connection(api_key: str) -> Tuple[bool, str, str]:
     candidate_models = [primary_model] + [m for m in default_candidates if m != primary_model]
 
     for model_name in candidate_models:
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={api_key}"
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent"
         payload = {"contents": [{"parts": [{"text": "ping"}]}], "generationConfig": {"maxOutputTokens": 30}}
         try:
             req = urllib.request.Request(
                 url,
                 data=json.dumps(payload).encode("utf-8"),
-                headers={"Content-Type": "application/json"}
+                headers={
+                    "Content-Type": "application/json",
+                    "x-goog-api-key": api_key.strip()
+                }
             )
             with urllib.request.urlopen(req, timeout=6) as res:
                 if res.status == 200:

@@ -1,0 +1,41 @@
+# Virtual Environment
+.venv/
+env/
+venv/
+ENV/
+
+# Python cache & compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.pyd
+
+# Local environment variables & secrets (NEVER COMMIT)
+.env
+.env.local
+.env.*
+*.env
+!.env.example
+.streamlit/secrets.toml
+
+# Indexes, vector models & binary cache
+.index_cache/
+*.pkl
+*.bin
+*.npy
+*.index
+
+# Local diagnostic archives & backups
+scratch/
+scratch_archive.zip
+backup_*.zip
+*.log
+
+# OS & IDE temporary files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo

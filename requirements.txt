@@ -1,0 +1,11 @@
+# RAG-Based Multilingual University Helpdesk
+# Core production dependencies for Python 3.10 - 3.12 (Streamlit Community Cloud & Local)
+
+streamlit>=1.35.0,<=1.42.0
+sentence-transformers>=3.0.0
+torch>=2.2.0
+faiss-cpu>=1.8.0
+numpy>=1.25.0
+pypdf>=4.2.0
+python-dotenv>=1.0.0
+google-genai>=0.1.0

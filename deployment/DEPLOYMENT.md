@@ -33,7 +33,7 @@ git commit -m "feat: complete multilingual university helpdesk ready for deploym
 Create a new repository (e.g. `university-helpdesk`) on GitHub, then link and push:
 ```bash
 git branch -M main
-git remote add origin https://github.com/<your-username>/university-helpdesk.git
+git remote add origin https://github.com/Nithin0008/university-helpdesk.git
 git push -u origin main
 ```
 
@@ -46,7 +46,7 @@ git push -u origin main
 ### Step 3.1: Create New App
 1. Go to [share.streamlit.io](https://share.streamlit.io) and sign in with GitHub.
 2. Click the **"New app"** button.
-3. Select your repository: `<your-username>/university-helpdesk`.
+3. Select your repository: `Nithin0008/university-helpdesk`.
 4. Set **Branch**: `main`.
 5. Set **Main file path**: `app.py`.
 6. Set **App URL**: Choose a custom subdomain (e.g., `lpu-helpdesk.streamlit.app`) or use the default.

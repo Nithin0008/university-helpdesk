@@ -151,7 +151,7 @@ university-helpdesk/
 
 ### Step 1: Clone the Repository
 ```bash
-git clone https://github.com/<your-username>/university-helpdesk.git
+git clone https://github.com/Nithin0008/university-helpdesk.git
 cd university-helpdesk
 ```
 
